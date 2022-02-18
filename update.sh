@@ -1,5 +1,6 @@
 #!/bin/bash
-[ -d "~/logs" ] && exec 2>&1 > ~/logs/update_log_$$.txt
+[ ! -d "~/logs" ] && mkdir ~/logs
+exec 2>&1 > ~/logs/update_log_$$.txt
 
 wait_to_complete () {
     echo "In wait loop..."
