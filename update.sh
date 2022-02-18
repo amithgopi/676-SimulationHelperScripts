@@ -1,5 +1,5 @@
 #!/bin/bash
-[ ! -d "~/logs" ] && mkdir ~/logs
+[ ! -d ~/logs ] && mkdir ~/logs
 exec 2>&1 > ~/logs/update_log_$$.txt
 
 wait_to_complete () {

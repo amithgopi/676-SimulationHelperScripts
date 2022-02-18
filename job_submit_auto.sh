@@ -15,7 +15,6 @@ then
     -traces ~pgratz/dpc3_traces/$1 \
     > $1.txt
 else
-  [ ! -d "out/$2_$3" ] && mkdir "out/$2_$3"
   bin/champsim \
     -warmup_instructions 200000000 \
     -simulation_instructions 1000000000 \
