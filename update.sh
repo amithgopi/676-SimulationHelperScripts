@@ -16,7 +16,7 @@ wait_to_complete () {
 #********************************************************************************#
 
 DIR_BRANCH="./branch"
-PREDICTOR="bimodial"
+PREDICTOR="bimodal"
 DIR="$DIR_BRANCH/$PREDICTOR/$PREDICTOR.cc"
 
 wait_to_complete
@@ -25,6 +25,7 @@ wait_to_complete
 sed -i 's/BIMODAL_TABLE_SIZE = 16384/BIMODAL_TABLE_SIZE = 8192/g' "$DIR"
 sed -i 's/BIMODAL_PRIME = 16381/BIMODAL_PRIME = 8191/g' "$DIR"
 echo "Running make...."
+./config.sh my_config.json
 make
 echo "Scheduling jobs..."
 ./auto.sh sims "$PREDICTOR" 2
@@ -35,6 +36,7 @@ sed -i 's/BIMODAL_TABLE_SIZE = 8192/BIMODAL_TABLE_SIZE = 16384/g' "$DIR"
 sed -i 's/BIMODAL_PRIME = 8191/BIMODAL_PRIME = 16381/g' "$DIR"
 sed -i 's/COUNTER_BITS = 2/COUNTER_BITS = 1/g' "$DIR"
 echo "Running make...."
+./config.sh my_config.json
 make
 echo "Scheduling jobs..."
 ./auto.sh sims "$PREDICTOR" 3
@@ -45,10 +47,12 @@ wait_to_complete
 PREDICTOR_OLD="$PREDICTOR"
 PREDICTOR="perceptron"
 DIR="$DIR_BRANCH/$PREDICTOR/$PREDICTOR.cc"
-sed "s/bimodal/$PREDICTOR/g" my_config.json
+sed -i "s/bimodal/$PREDICTOR/g" my_config.json
+
 
 ## Case perceptron 1
 echo "Running make...."
+./config.sh my_config.json
 make
 echo "Scheduling jobs..."
 ./auto.sh sims "$PREDICTOR" 1
@@ -59,6 +63,7 @@ wait_to_complete
 # sed -i 's/PERCEPTRON_BITS = 8/PERCEPTRON_BITS = 8/g' "$DIR"
 sed -i 's/NUM_PERCEPTRONS = 81/NUM_PERCEPTRONS = 81/g' "$DIR"
 echo "Running make...."
+./config.sh my_config.json
 make
 echo "Scheduling jobs..."
 ./auto.sh sims "$PREDICTOR" 2
@@ -69,6 +74,7 @@ wait_to_complete
 sed -i 's/PERCEPTRON_BITS = 8/PERCEPTRON_BITS = 4/g' "$DIR"
 sed -i 's/NUM_PERCEPTRONS = 81/NUM_PERCEPTRONS = 163/g' "$DIR"
 echo "Running make...."
+./config.sh my_config.json
 make
 echo "Scheduling jobs..."
 ./auto.sh sims "$PREDICTOR" 3
@@ -79,9 +85,10 @@ wait_to_complete
 PREDICTOR_OLD="$PREDICTOR"
 PREDICTOR="gshare"
 DIR="$DIR_BRANCH/$PREDICTOR/$PREDICTOR.cc"
-sed "s/$PREDICTOR_OLD/$PREDICTOR/g" my_config.json
+sed -i "s/$PREDICTOR_OLD/$PREDICTOR/g" my_config.json
 ## Case gshare 1
 echo "Running make...."
+./config.sh my_config.json
 make
 echo "Scheduling jobs..."
 ./auto.sh sims "$PREDICTOR" 1
@@ -91,6 +98,7 @@ wait_to_complete
 # sed -i 's/GLOBAL_HISTORY_LENGTH 14/GLOBAL_HISTORY_LENGTH 14/g' "$DIR"
 sed -i 's/GS_HISTORY_TABLE_SIZE 16384/GS_HISTORY_TABLE_SIZE 8192/g' "$DIR"
 echo "Running make...."
+./config.sh my_config.json
 make
 echo "Scheduling jobs..."
 ./auto.sh sims "$PREDICTOR" 2
@@ -100,6 +108,7 @@ wait_to_complete
 sed -i 's/GLOBAL_HISTORY_LENGTH 14/GLOBAL_HISTORY_LENGTH 7/g' "$DIR"
 sed -i 's/GS_HISTORY_TABLE_SIZE 8192/GS_HISTORY_TABLE_SIZE 16384/g' "$DIR"
 echo "Running make...."
+./config.sh my_config.json
 make
 echo "Scheduling jobs..."
 ./auto.sh sims "$PREDICTOR" 3

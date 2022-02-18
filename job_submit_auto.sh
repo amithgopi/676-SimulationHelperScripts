@@ -20,6 +20,6 @@ else
     -simulation_instructions 1000000000 \
     -traces ~pgratz/dpc3_traces/$1 \
     > out/$2_$3/$1.txt
-
+fi
 
 ### Add more ChampSim runs below.
