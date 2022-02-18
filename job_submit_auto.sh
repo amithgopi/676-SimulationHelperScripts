@@ -7,10 +7,20 @@
 #SBATCH --partition=non-gpu          # This job does not use a GPU
 
 echo "Running $1"
-bin/champsim \
-  -warmup_instructions 200000000 \
-  -simulation_instructions 1000000000 \
-  -traces ~pgratz/dpc3_traces/$1 \
-  > $1.txt
+if [ -z "$2" ] && [ -z "$3" ]
+then
+  bin/champsim \
+    -warmup_instructions 200000000 \
+    -simulation_instructions 1000000000 \
+    -traces ~pgratz/dpc3_traces/$1 \
+    > $1.txt
+else
+  [ ! -d "out/$2_$3" ] && mkdir "out/$2_$3"
+  bin/champsim \
+    -warmup_instructions 200000000 \
+    -simulation_instructions 1000000000 \
+    -traces ~pgratz/dpc3_traces/$1 \
+    > out/$2_$3/$1.txt
+
 
 ### Add more ChampSim runs below.
