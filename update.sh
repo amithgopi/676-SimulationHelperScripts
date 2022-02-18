@@ -23,7 +23,6 @@ wait_to_complete
 ## Case bimodial 2
 sed -i 's/BIMODAL_TABLE_SIZE = 16384/BIMODAL_TABLE_SIZE = 8192/g' "$DIR"
 sed -i 's/BIMODAL_PRIME = 16381/BIMODAL_PRIME = 8191/g' "$DIR"
-sed -i 's/NUM_PERCEPTRONS = 81/NUM_PERCEPTRONS = 81/g' "$DIR"
 echo "Running make...."
 make
 echo "Scheduling jobs..."
@@ -34,7 +33,6 @@ wait_to_complete
 sed -i 's/BIMODAL_TABLE_SIZE = 8192/BIMODAL_TABLE_SIZE = 16384/g' "$DIR"
 sed -i 's/BIMODAL_PRIME = 8191/BIMODAL_PRIME = 16381/g' "$DIR"
 sed -i 's/COUNTER_BITS = 2/COUNTER_BITS = 1/g' "$DIR"
-sed -i 's/NUM_PERCEPTRONS = 81/NUM_PERCEPTRONS = 81/g' "$DIR"
 echo "Running make...."
 make
 echo "Scheduling jobs..."
