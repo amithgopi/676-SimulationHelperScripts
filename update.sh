@@ -2,6 +2,8 @@
 [ ! -d ~/logs ] && mkdir ~/logs
 exec 2>&1 > ~/logs/update_log_$$.txt
 
+# scl enable devtoolset-7 bash
+
 wait_to_complete () {
     echo "In wait loop..."
     COUNT=2
